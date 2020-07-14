@@ -5,23 +5,28 @@ from PIL import Image
 import numpy as np
 import scipy as sp
 import scipy.ndimage.morphology
+import cv2
 
-def Cropper(start, end):
+def Cropper(start, end, foldername):
     for x in range(start, end + 1):
-        PUBLIC_IMAGE_NAME = 'img-' + str(x) + '-no-bg'
-        im = Image.open('results/removebg/' + PUBLIC_IMAGE_NAME + '.png')
+        PUBLIC_IMAGE_NAME = foldername + '-' + str(x) + '-no-bg'
+        im = Image.open('results/' + foldername + '/removebg/' + PUBLIC_IMAGE_NAME + '.png')
         data = np.asarray(im)
         filled = sp.ndimage.morphology.binary_fill_holes(data)
         objects, num_objects = sp.ndimage.label(filled)
         object_slices =  sp.ndimage.find_objects(objects)
 
         crop_image = Image.fromarray(data[object_slices[0]])
-        crop_image.save('results/cropped/' + PUBLIC_IMAGE_NAME + '-cropped.png')
+        w, h = crop_image.size
+        if foldername == 'necklace':
+            crop_image.save('results/' + foldername + '/cropped/' + PUBLIC_IMAGE_NAME + '-cropped-0-' + str(w) + '.png')
+        else:
+            crop_image.save('results/' + foldername + '/cropped/' + PUBLIC_IMAGE_NAME + '-cropped.png')
         
-        print('Cropped for img-' + str(x) + '-no-bg.png in cropper.py')
+        print('Cropped for ' + foldername + '-' + str(x) + '-no-bg.png in cropper.py')
 
 if __name__ == '__main__':
-    Cropper(0,45)
+    Cropper(1, 3, "earring")
 
 ############## These are similar cropper function below ##############
 
