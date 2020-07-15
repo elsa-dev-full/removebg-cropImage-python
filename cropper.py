@@ -5,7 +5,8 @@ from PIL import Image
 import numpy as np
 import scipy as sp
 import scipy.ndimage.morphology
-import cv2
+from os import walk
+import pathlib
 
 def Cropper(start, end, foldername):
     for x in range(start, end + 1):
@@ -27,6 +28,13 @@ def Cropper(start, end, foldername):
 
 if __name__ == '__main__':
     Cropper(1, 3, "earring")
+    dirpath = pathlib.Path(__file__).parent.absolute()
+    mypath = str(dirpath) + '/results/earring/removebg/'
+    f = []
+    for (dirpath, dirnames, filenames) in walk(mypath):
+        f.extend(filenames)
+        break
+    print(f)
 
 ############## These are similar cropper function below ##############
 

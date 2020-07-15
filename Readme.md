@@ -1,6 +1,11 @@
 ## Guidence for this project
 
 ```bash
+Please make sure to run this command:
+pip install -r requirements.txt
+```
+
+```bash
 Structure for this project:
     __pycache__/
     assests/
@@ -22,8 +27,10 @@ Structure for this project:
 ```
 
 ```bash
+# When you run this project like below
 # python manage.py
-In manage.py file, there are two parameters-startNum=1, endNum=3, foldername = "necklace" which mean the range from 
+In manage.py file, there are three parameters - startNum=1, endNum=3, foldername = ["earring", "necklace"]:
+and run 'removebg.RemoveBG(startNum, endNum, foldername[1])' which mean the range from 
 necklace-1.jpg to necklace-3.jpg in assests/necklace folder. This will create removebg images and also cropped images 
 which are matched with every image in assests/necklace folder.
 The results will be in results/necklace folder-removebg, and cropped folders.
@@ -31,6 +38,7 @@ User can change parameter as he wants.
 ```
 
 ```bash
+# When you run this project like below
 # python removebg.py
 # if __name__ == '__main__':
 #     RemoveBG(1, 20, "earring")
@@ -39,6 +47,7 @@ User can change parameter as he wants.
 ```
 
 ```bash
+# When you run this project like below
 # python cropper.py
 # if __name__ == '__main__':
 #     Cropper(1, 20, "earring")

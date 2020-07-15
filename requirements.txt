@@ -1,0 +1,7 @@
+numpy
+scipy
+requests
+Image
+Pillow
+pathlib
+os
